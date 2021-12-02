@@ -6,9 +6,10 @@ def get_eat_data():
 
 
 def get_header():
-    return """
+    return """<!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>Овощной клуб декабря</title>
 <style>
 table {
