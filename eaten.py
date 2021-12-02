@@ -12,31 +12,20 @@ def get_header():
 <meta charset="UTF-8">
 <title>Овощной клуб декабря</title>
 <style>
-div.products {
-    padding: 0 0 1rem 2rem;
-}
-h3 {
-    color: #888;
-}
-span.total_count {
-    font-weight: normal;
-}
-span.counter {
-    color: #aaa;
-    font-size: 80%;
-}
-.highlighted {
-    color: #3333ff;
-}
-.grayed {
-    color: #ddd;
-}
+    body {padding: 1rem;}
+    div.products {padding: 0.4rem 0 1rem 2rem;}
+    h3 {color: #888; margin: 0;}
+    span.total_count {font-weight: normal;}
+    span.counter {color: #aaa; font-size: 80%;}
+    .highlighted {color: #3333ff;}
+    .grayed {color: #ddd;}
+    .unique {color: orange;}
 </style>
 </head>
 <body>
 <script>
 
-function show_missing(person) {
+function highlights(person) {
     var links = document.querySelectorAll('span.missed_by_' + person);
     links.forEach(function(link){
         link.classList.add('highlighted') 
@@ -44,6 +33,10 @@ function show_missing(person) {
     var links = document.querySelectorAll('span.eaten_by_' + person);
     links.forEach(function(link){
         link.classList.add('grayed') 
+    });
+    var links = document.querySelectorAll('span.unique_by_' + person);
+    links.forEach(function(link){
+        link.classList.add('unique') 
     });
 }
 
@@ -55,6 +48,10 @@ function go_dull() {
     var links = document.querySelectorAll('span.grayed');
     links.forEach(function(link){
         link.classList.remove('grayed')
+    });
+    var links = document.querySelectorAll('span.unique');
+    links.forEach(function(link){
+        link.classList.remove('unique')
     });
 }
 
@@ -69,16 +66,19 @@ def get_main_html():
     sorting.sort()
 
     for _, person in sorting:
-        section = f'''<div onmouseover="show_missing('{person}')" onmouseout="go_dull()"><h3>{person} <span class="total_count">&middot; {len(eaten[person])}</span></h3><div class="products">'''
+        section = f'''<div><h3><span onmouseover="highlights('{person}')" onmouseout="go_dull()">{person} <span class="total_count">&middot; {len(eaten[person])}</span></span></h3><div class="products">'''
         products = []
         for i, product in enumerate(eaten[person]):
             css_class = ''
             for other_person in eaten:
-                if other_person == person: continue
-                if product not in eaten[other_person]:
-                    css_class += f' missed_by_{other_person}'
+                if other_person == person:
+                    if all(product not in eaten[p] for p in eaten if p != person):
+                        css_class += f' unique_by_{other_person}'
                 else:
-                    css_class += f' eaten_by_{other_person}'
+                    if product not in eaten[other_person]:
+                        css_class += f' missed_by_{other_person}'
+                    else:
+                        css_class += f' eaten_by_{other_person}'
             products.append(f'<nobr><span class="counter">{i + 1}</span> <span class="eaten {css_class}">{product}</span></nobr>')
         section += ' <span class="sep">&middot;</span> '.join(products)
         section += '</div></div>'
