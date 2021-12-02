@@ -66,7 +66,7 @@ def get_main_html():
     sorting.sort()
 
     for _, person in sorting:
-        section = f'''<div><h3><span onmouseover="highlights('{person}')" onmouseout="go_dull()">{person} <span class="total_count">&middot; {len(eaten[person])}</span></span></h3><div class="products">'''
+        section = f'''<div><h3><span onmouseover="highlights('{person}')" onmouseout="go_dull()">{person} <span class="total_count">&middot; {len(eaten[person])}</span></span></h3><div class="products">\n'''
         products = []
         for i, product in enumerate(eaten[person]):
             css_class = ''
@@ -79,9 +79,9 @@ def get_main_html():
                         css_class += f' missed_by_{other_person}'
                     else:
                         css_class += f' eaten_by_{other_person}'
-            products.append(f'<nobr><span class="counter">{i + 1}</span> <span class="eaten {css_class}">{product}</span></nobr>')
+            products.append(f'\n<nobr><span class="counter">{i + 1}</span> <span class="eaten {css_class}">{product}</span></nobr>')
         section += ' <span class="sep">&middot;</span> '.join(products)
-        section += '</div></div>'
+        section += '\n</div></div>\n\n'
         html += section
 
     return html
