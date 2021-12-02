@@ -90,5 +90,4 @@ def get_main_html():
 
 
 if __name__ == '__main__':
-    print('saving...')
-    open('index.html', 'w').write(get_main_html())
+    open('ovoshh-club.html', 'w').write(get_main_html())
