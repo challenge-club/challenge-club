@@ -11,7 +11,11 @@ def get_header():
 <head>
 <meta charset="UTF-8">
 <title>Овощной клуб декабря</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
 <style>
+    * {font-family: 'Open Sans Condensed', sans-serif;}
     body {padding: 1rem;}
     div.products {padding: 0.4rem 0 1rem 2rem;}
     h3 {color: #888; margin: 0;}
