@@ -14,9 +14,10 @@
     h3 * {font-family: sans-serif;}
     span.total_count {font-weight: normal;}
     span.counter {color: #aaa; font-size: 80%;}
-    .highlighted {color: #3333ff;}
-    .grayed {color: #ddd;}
+    .missed {color: #3333ff;}
+    .eaten {color: #ddd;}
     .unique {color: orange;}
+    div.all_products {margin-top: 3rem;}
 </style>
 </head>
 <body>
@@ -25,11 +26,11 @@
 function highlights(person) {
     var links = document.querySelectorAll('span.missed_by_' + person);
     links.forEach(function(link){
-        link.classList.add('highlighted') 
+        link.classList.add('missed') 
     });
     var links = document.querySelectorAll('span.eaten_by_' + person);
     links.forEach(function(link){
-        link.classList.add('grayed') 
+        link.classList.add('eaten') 
     });
     var links = document.querySelectorAll('span.unique_by_' + person);
     links.forEach(function(link){
@@ -38,13 +39,13 @@ function highlights(person) {
 }
 
 function go_dull() {
-    var links = document.querySelectorAll('span.highlighted');
+    var links = document.querySelectorAll('span.missed');
     links.forEach(function(link){
-        link.classList.remove('highlighted')
+        link.classList.remove('missed')
     });
-    var links = document.querySelectorAll('span.grayed');
+    var links = document.querySelectorAll('span.eaten');
     links.forEach(function(link){
-        link.classList.remove('grayed')
+        link.classList.remove('eaten')
     });
     var links = document.querySelectorAll('span.unique');
     links.forEach(function(link){
@@ -55,75 +56,197 @@ function go_dull() {
 </script>
 <div><h3><span onmouseover="highlights('Валера')" onmouseout="go_dull()">Валера <span class="total_count">&middot; 20</span></span></h3><div class="products">
 
-<nobr><span class="counter">1</span> <span class="eaten  missed_by_Женя unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">топинамбур</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">2</span> <span class="eaten  missed_by_Женя unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">черника</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">3</span> <span class="eaten  missed_by_Женя missed_by_Денис eaten_by_Аня missed_by_Галина">яблоко жёлтое</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">4</span> <span class="eaten  missed_by_Женя missed_by_Денис eaten_by_Аня missed_by_Галина">гранат</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">5</span> <span class="eaten  missed_by_Женя missed_by_Денис missed_by_Аня eaten_by_Галина">банан</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">6</span> <span class="eaten  missed_by_Женя missed_by_Денис missed_by_Аня eaten_by_Галина">киви зелёное</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">7</span> <span class="eaten  eaten_by_Женя missed_by_Денис eaten_by_Аня missed_by_Галина">авокадо</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">8</span> <span class="eaten  eaten_by_Женя missed_by_Денис missed_by_Аня missed_by_Галина">айва</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">9</span> <span class="eaten  eaten_by_Женя missed_by_Денис missed_by_Аня missed_by_Галина">батат</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">10</span> <span class="eaten  missed_by_Женя unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">капуста белая</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">11</span> <span class="eaten  eaten_by_Женя missed_by_Денис missed_by_Аня missed_by_Галина">капуста фиолетовая</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">12</span> <span class="eaten  eaten_by_Женя missed_by_Денис missed_by_Аня missed_by_Галина">водоросли вакаме</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">13</span> <span class="eaten  eaten_by_Женя missed_by_Денис eaten_by_Аня missed_by_Галина">мандарин</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">14</span> <span class="eaten  missed_by_Женя unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">черимойя</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">15</span> <span class="eaten  eaten_by_Женя missed_by_Денис missed_by_Аня missed_by_Галина">физалис</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">16</span> <span class="eaten  missed_by_Женя unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">ежевика</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">17</span> <span class="eaten  missed_by_Женя unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">хурма</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">18</span> <span class="eaten  missed_by_Женя unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">брюссельская капуста</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">19</span> <span class="eaten  missed_by_Женя unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">яблоко зелёное</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">20</span> <span class="eaten  eaten_by_Женя missed_by_Денис missed_by_Аня eaten_by_Галина">яблоко красное</span></nobr>
+<nobr><span class="counter">1</span> <span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">топинамбур</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">2</span> <span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">черника</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">3</span> <span class="missed_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">яблоко жёлтое</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">4</span> <span class="missed_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">гранат</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">5</span> <span class="missed_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина">банан</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">6</span> <span class="missed_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина">киви зелёное</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">7</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">авокадо</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">8</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">айва</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">9</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">батат</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">10</span> <span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">капуста белая</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">11</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">капуста фиолетовая</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">12</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">водоросли вакаме</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">13</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">мандарин</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">14</span> <span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">черимойя</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">15</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">физалис</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">16</span> <span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">ежевика</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">17</span> <span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">хурма</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">18</span> <span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">брюссельская капуста</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">19</span> <span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">яблоко зелёное</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">20</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина">яблоко красное</span></nobr>
 </div></div>
 
 <div><h3><span onmouseover="highlights('Женя')" onmouseout="go_dull()">Женя <span class="total_count">&middot; 15</span></span></h3><div class="products">
 
-<nobr><span class="counter">1</span> <span class="eaten  unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">помидор розовый</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">2</span> <span class="eaten  unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">огурец</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">3</span> <span class="eaten  missed_by_Валера eaten_by_Денис missed_by_Аня missed_by_Галина">лук фиолетовый</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">4</span> <span class="eaten  unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">петрушка</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">5</span> <span class="eaten  eaten_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина">яблоко красное</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">6</span> <span class="eaten  unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">морковь оранжевая</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">7</span> <span class="eaten  eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">мандарин</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">8</span> <span class="eaten  unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">оливка тёмно-розовая</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">9</span> <span class="eaten  eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">авокадо</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">10</span> <span class="eaten  unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">салат айсберг</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">11</span> <span class="eaten  eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">капуста фиолетовая</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">12</span> <span class="eaten  eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">батат</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">13</span> <span class="eaten  eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">водоросли вакаме</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">14</span> <span class="eaten  eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">физалис</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">15</span> <span class="eaten  eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">айва</span></nobr>
+<nobr><span class="counter">1</span> <span class="eaten_by_Женя unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">помидор розовый</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">2</span> <span class="eaten_by_Женя unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">огурец</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">3</span> <span class="eaten_by_Женя missed_by_Валера eaten_by_Денис missed_by_Аня missed_by_Галина">лук фиолетовый</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">4</span> <span class="eaten_by_Женя unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">петрушка</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">5</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина">яблоко красное</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">6</span> <span class="eaten_by_Женя unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">морковь оранжевая</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">7</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">мандарин</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">8</span> <span class="eaten_by_Женя unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">оливка тёмно-розовая</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">9</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">авокадо</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">10</span> <span class="eaten_by_Женя unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">салат айсберг</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">11</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">капуста фиолетовая</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">12</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">батат</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">13</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">водоросли вакаме</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">14</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">физалис</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">15</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">айва</span></nobr>
 </div></div>
 
-<div><h3><span onmouseover="highlights('Галина')" onmouseout="go_dull()">Галина <span class="total_count">&middot; 8</span></span></h3><div class="products">
+<div><h3><span onmouseover="highlights('Галина')" onmouseout="go_dull()">Галина <span class="total_count">&middot; 9</span></span></h3><div class="products">
 
-<nobr><span class="counter">1</span> <span class="eaten  missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня unique_by_Галина">салат ромэн</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">2</span> <span class="eaten  missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня unique_by_Галина">кинза</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">3</span> <span class="eaten  missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня unique_by_Галина">фасоль стручковая зелёная</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">4</span> <span class="eaten  missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня unique_by_Галина">виноград чёрный</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">5</span> <span class="eaten  missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня unique_by_Галина">слива чёрная</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">6</span> <span class="eaten  missed_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня">банан</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">7</span> <span class="eaten  eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня">яблоко красное</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">8</span> <span class="eaten  missed_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня">киви зелёное</span></nobr>
+<nobr><span class="counter">1</span> <span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина unique_by_Галина">салат ромэн</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">2</span> <span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина unique_by_Галина">кинза</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">3</span> <span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина unique_by_Галина">фасоль стручковая зелёная</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">4</span> <span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина unique_by_Галина">виноград чёрный</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">5</span> <span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина unique_by_Галина">слива чёрная</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">6</span> <span class="missed_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина">банан</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">7</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина">яблоко красное</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">8</span> <span class="missed_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина">киви зелёное</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">9</span> <span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина unique_by_Галина">курага</span></nobr>
 </div></div>
 
 <div><h3><span onmouseover="highlights('Аня')" onmouseout="go_dull()">Аня <span class="total_count">&middot; 6</span></span></h3><div class="products">
 
-<nobr><span class="counter">1</span> <span class="eaten  missed_by_Женя missed_by_Валера missed_by_Денис unique_by_Аня missed_by_Галина">помидор красный</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">2</span> <span class="eaten  eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Галина">мандарин</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">3</span> <span class="eaten  missed_by_Женя eaten_by_Валера missed_by_Денис missed_by_Галина">гранат</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">4</span> <span class="eaten  eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Галина">авокадо</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">5</span> <span class="eaten  missed_by_Женя missed_by_Валера missed_by_Денис unique_by_Аня missed_by_Галина">малина</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">6</span> <span class="eaten  missed_by_Женя eaten_by_Валера missed_by_Денис missed_by_Галина">яблоко жёлтое</span></nobr>
+<nobr><span class="counter">1</span> <span class="missed_by_Женя missed_by_Валера missed_by_Денис eaten_by_Аня unique_by_Аня missed_by_Галина">помидор красный</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">2</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">мандарин</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">3</span> <span class="missed_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">гранат</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">4</span> <span class="eaten_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">авокадо</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">5</span> <span class="missed_by_Женя missed_by_Валера missed_by_Денис eaten_by_Аня unique_by_Аня missed_by_Галина">малина</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">6</span> <span class="missed_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">яблоко жёлтое</span></nobr>
 </div></div>
 
 <div><h3><span onmouseover="highlights('Денис')" onmouseout="go_dull()">Денис <span class="total_count">&middot; 5</span></span></h3><div class="products">
 
-<nobr><span class="counter">1</span> <span class="eaten  missed_by_Женя missed_by_Валера unique_by_Денис missed_by_Аня missed_by_Галина">паприка красная</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">2</span> <span class="eaten  eaten_by_Женя missed_by_Валера missed_by_Аня missed_by_Галина">лук фиолетовый</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">3</span> <span class="eaten  missed_by_Женя missed_by_Валера unique_by_Денис missed_by_Аня missed_by_Галина">шпинат</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">4</span> <span class="eaten  missed_by_Женя missed_by_Валера unique_by_Денис missed_by_Аня missed_by_Галина">чеснок</span></nobr> <span class="sep">&middot;</span> 
-<nobr><span class="counter">5</span> <span class="eaten  missed_by_Женя missed_by_Валера unique_by_Денис missed_by_Аня missed_by_Галина">груша жёлтая</span></nobr>
+<nobr><span class="counter">1</span> <span class="missed_by_Женя missed_by_Валера eaten_by_Денис unique_by_Денис missed_by_Аня missed_by_Галина">паприка красная</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">2</span> <span class="eaten_by_Женя missed_by_Валера eaten_by_Денис missed_by_Аня missed_by_Галина">лук фиолетовый</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">3</span> <span class="missed_by_Женя missed_by_Валера eaten_by_Денис unique_by_Денис missed_by_Аня missed_by_Галина">шпинат</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">4</span> <span class="missed_by_Женя missed_by_Валера eaten_by_Денис unique_by_Денис missed_by_Аня missed_by_Галина">чеснок</span></nobr> <span class="sep">&middot;</span> 
+<nobr><span class="counter">5</span> <span class="missed_by_Женя missed_by_Валера eaten_by_Денис unique_by_Денис missed_by_Аня missed_by_Галина">груша жёлтая</span></nobr>
 </div></div>
 
+<div class="all_products"><span class="eaten_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">авокадо<sup>АВЖ</sup> &middot; 
+<span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">айва<sup>ВЖ</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">ананас<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">апельсин<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">арбуз<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">базилик<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">баклажан<sup></sup> &middot; 
+<span class="missed_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина">банан<sup>ВГ</sup> &middot; 
+<span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">батат<sup>ВЖ</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">брусника<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">брюква<sup></sup> &middot; 
+<span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">брюссельская капуста<sup>В</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">виноград жёлтый<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">виноград красный<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина unique_by_Галина">виноград чёрный<sup>Г</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">вишня<sup></sup> &middot; 
+<span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">водоросли вакаме<sup>ВЖ</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">горох<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">гранадилла<sup></sup> &middot; 
+<span class="missed_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">гранат<sup>АВ</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">грейпфрут белый<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">грейпфрут красный<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера eaten_by_Денис unique_by_Денис missed_by_Аня missed_by_Галина">груша жёлтая<sup>Д</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">груша зелёная<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">гуайява<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">дыня желтая<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">дыня зелёная<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">дыня розовая<sup></sup> &middot; 
+<span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">ежевика<sup>В</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">земляника<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">имбирь<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">инжир<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">кабачок<sup></sup> &middot; 
+<span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">капуста белая<sup>В</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">капуста кале<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">капуста китайская<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">капуста романеско<sup></sup> &middot; 
+<span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">капуста фиолетовая<sup>ВЖ</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">капуста цветная<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">картофель жёлтый<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">картофель фиолетовый<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">киви жёлтое<sup></sup> &middot; 
+<span class="missed_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина">киви зелёное<sup>ВГ</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина unique_by_Галина">кинза<sup>Г</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">клубника<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">клюква<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">кокос<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">кольраби<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">кукуруза<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина unique_by_Галина">курага<sup>Г</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">лайм<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">лимон<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">личи<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">лук жёлтый<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">лук зелёный<sup></sup> &middot; 
+<span class="eaten_by_Женя missed_by_Валера eaten_by_Денис missed_by_Аня missed_by_Галина">лук фиолетовый<sup>ДЖ</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">лук-порей<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис eaten_by_Аня unique_by_Аня missed_by_Галина">малина<sup>А</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">манго<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">мангольд<sup></sup> &middot; 
+<span class="eaten_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">мандарин<sup>АВЖ</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">морковь белая<sup></sup> &middot; 
+<span class="eaten_by_Женя unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">морковь оранжевая<sup>Ж</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">морковь фиолетовая<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">морская капуста<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">нут<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">облепиха<sup></sup> &middot; 
+<span class="eaten_by_Женя unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">огурец<sup>Ж</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">оливка зелёная<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">оливка розовая<sup></sup> &middot; 
+<span class="eaten_by_Женя unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">оливка тёмно-розовая<sup>Ж</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">оливка чёрная<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">паприка белая<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">паприка жёлтая<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">паприка зелёная<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера eaten_by_Денис unique_by_Денис missed_by_Аня missed_by_Галина">паприка красная<sup>Д</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">паприка оранжевая<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">пассионфрут<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">пастернак<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">патиссон<sup></sup> &middot; 
+<span class="eaten_by_Женя unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">петрушка<sup>Ж</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">помело белый<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">помело красный<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">помидор зелёный<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис eaten_by_Аня unique_by_Аня missed_by_Галина">помидор красный<sup>А</sup> &middot; 
+<span class="eaten_by_Женя unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">помидор розовый<sup>Ж</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">редис белый<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">редис красный<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">ростки бобов мунг<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">ростки люцерны<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">ростки редиса<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">руккола<sup></sup> &middot; 
+<span class="eaten_by_Женя unique_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">салат айсберг<sup>Ж</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">салат листовой<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">салат римский<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина unique_by_Галина">салат ромэн<sup>Г</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">свити<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">свёкла<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">сельдерей<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">слива<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина unique_by_Галина">слива чёрная<sup>Г</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">смородина красная<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">смородина чёрная<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">спаржа<sup></sup> &middot; 
+<span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">топинамбур<sup>В</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">тыква<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">укроп<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина unique_by_Галина">фасоль стручковая зелёная<sup>Г</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">фейхоа<sup></sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">фенхель<sup></sup> &middot; 
+<span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">физалис<sup>ВЖ</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">финик<sup></sup> &middot; 
+<span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">хурма<sup>В</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">черешня<sup></sup> &middot; 
+<span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">черимойя<sup>В</sup> &middot; 
+<span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">черника<sup>В</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера eaten_by_Денис unique_by_Денис missed_by_Аня missed_by_Галина">чеснок<sup>Д</sup> &middot; 
+<span class="missed_by_Женя missed_by_Валера eaten_by_Денис unique_by_Денис missed_by_Аня missed_by_Галина">шпинат<sup>Д</sup> &middot; 
+<span class="missed_by_Женя eaten_by_Валера missed_by_Денис eaten_by_Аня missed_by_Галина">яблоко жёлтое<sup>АВ</sup> &middot; 
+<span class="missed_by_Женя eaten_by_Валера unique_by_Валера missed_by_Денис missed_by_Аня missed_by_Галина">яблоко зелёное<sup>В</sup> &middot; 
+<span class="eaten_by_Женя eaten_by_Валера missed_by_Денис missed_by_Аня eaten_by_Галина">яблоко красное<sup>ВГЖ</sup></div></body>

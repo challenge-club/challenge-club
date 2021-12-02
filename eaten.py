@@ -22,9 +22,10 @@ def get_header():
     h3 * {font-family: sans-serif;}
     span.total_count {font-weight: normal;}
     span.counter {color: #aaa; font-size: 80%;}
-    .highlighted {color: #3333ff;}
-    .grayed {color: #ddd;}
+    .missed {color: #3333ff;}
+    .eaten {color: #ddd;}
     .unique {color: orange;}
+    div.all_products {margin-top: 3rem;}
 </style>
 </head>
 <body>
@@ -33,11 +34,11 @@ def get_header():
 function highlights(person) {
     var links = document.querySelectorAll('span.missed_by_' + person);
     links.forEach(function(link){
-        link.classList.add('highlighted') 
+        link.classList.add('missed') 
     });
     var links = document.querySelectorAll('span.eaten_by_' + person);
     links.forEach(function(link){
-        link.classList.add('grayed') 
+        link.classList.add('eaten') 
     });
     var links = document.querySelectorAll('span.unique_by_' + person);
     links.forEach(function(link){
@@ -46,13 +47,13 @@ function highlights(person) {
 }
 
 function go_dull() {
-    var links = document.querySelectorAll('span.highlighted');
+    var links = document.querySelectorAll('span.missed');
     links.forEach(function(link){
-        link.classList.remove('highlighted')
+        link.classList.remove('missed')
     });
-    var links = document.querySelectorAll('span.grayed');
+    var links = document.querySelectorAll('span.eaten');
     links.forEach(function(link){
-        link.classList.remove('grayed')
+        link.classList.remove('eaten')
     });
     var links = document.querySelectorAll('span.unique');
     links.forEach(function(link){
@@ -64,6 +65,19 @@ function go_dull() {
 """
 
 
+def get_css_classes(product):
+    eaten = get_eat_data()
+    css_classes = []
+    for person in eaten:
+        if product in eaten[person]:
+            css_classes.append(f'eaten_by_{person}')
+            if all(product not in eaten[p] for p in eaten if p != person):
+                css_classes.append(f'unique_by_{person}')
+        else:
+            css_classes.append(f'missed_by_{person}')
+    return ' '.join(css_classes)
+
+
 def get_main_html():
     eaten = get_eat_data()
     html = get_header()
@@ -71,24 +85,122 @@ def get_main_html():
     sorting.sort()
 
     for _, person in sorting:
+        if len(eaten[person]) != len(set(eaten[person])):
+            raise Exception(f"Duplicates in product list of {person}!")
+
         section = f'''<div><h3><span onmouseover="highlights('{person}')" onmouseout="go_dull()">{person} <span class="total_count">&middot; {len(eaten[person])}</span></span></h3><div class="products">\n'''
         products = []
+
         for i, product in enumerate(eaten[person]):
-            css_class = ''
-            for other_person in eaten:
-                if other_person == person:
-                    if all(product not in eaten[p] for p in eaten if p != person):
-                        css_class += f' unique_by_{other_person}'
-                else:
-                    if product not in eaten[other_person]:
-                        css_class += f' missed_by_{other_person}'
-                    else:
-                        css_class += f' eaten_by_{other_person}'
-            products.append(f'\n<nobr><span class="counter">{i + 1}</span> <span class="eaten {css_class}">{product}</span></nobr>')
+            products.append(f'\n<nobr><span class="counter">{i + 1}</span> <span class="{get_css_classes(product)}">{product}</span></nobr>')
+
         section += ' <span class="sep">&middot;</span> '.join(products)
         section += '\n</div></div>\n\n'
         html += section
 
+    html += '<div class="all_products">'
+    all_products = set("""
+ананас
+апельсин
+арбуз
+базилик
+баклажан
+брусника
+брюква
+виноград жёлтый
+виноград красный
+виноград чёрный
+вишня
+горох
+гранадилла
+грейпфрут белый
+грейпфрут красный
+груша жёлтая
+груша зелёная
+гуайява
+дыня желтая
+дыня зелёная
+дыня розовая
+земляника
+имбирь
+инжир
+кабачок
+капуста кале
+капуста китайская
+капуста романеско
+капуста цветная
+картофель жёлтый
+картофель фиолетовый
+киви жёлтое
+клубника
+клюква
+кокос
+кольраби
+кукуруза
+лайм
+лимон
+личи
+лук жёлтый
+лук зелёный
+лук фиолетовый
+лук-порей
+манго
+мангольд
+морковь белая
+морковь оранжевая
+морковь фиолетовая
+морская капуста
+нут
+облепиха
+оливка зелёная
+оливка розовая
+оливка тёмно-розовая
+оливка чёрная
+паприка белая
+паприка жёлтая
+паприка зелёная
+паприка красная
+паприка оранжевая
+пассионфрут
+пастернак
+патиссон
+петрушка
+помело белый
+помело красный
+помидор зелёный
+помидор красный
+помидор розовый
+редис белый
+редис красный
+ростки бобов мунг
+ростки люцерны
+ростки редиса
+руккола
+салат листовой
+салат римский
+свити
+свёкла
+сельдерей
+слива
+смородина красная
+смородина чёрная
+спаржа
+тыква
+укроп
+фейхоа
+фенхель
+финик
+черешня
+""".strip().splitlines())
+    for products in eaten.values():
+        all_products.update(products)
+    products = []
+    for product in sorted(all_products):
+        marks = ''.join(name[0] for name in sorted(eaten.keys()) if product in eaten[name])
+        products.append(f'<span class="{get_css_classes(product)}">{product}<sup>{marks}</sup>')
+    html += ' &middot; \n'.join(products)
+
+    html += '</div></body>'
     return html
 
 
