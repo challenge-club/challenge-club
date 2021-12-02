@@ -25,7 +25,7 @@ def get_header():
     .missed {color: #3333ff;}
     .eaten {color: #ddd;}
     .unique {color: orange;}
-    div.all_products {margin-top: 3rem;}
+    div.all_products {margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem;}
 </style>
 </head>
 <body>
