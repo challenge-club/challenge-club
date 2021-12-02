@@ -88,4 +88,4 @@ def get_main_html():
 
 
 if __name__ == '__main__':
-    open('ovoshh-club.html', 'w').write(get_main_html())
+    open('index.html', 'w').write(get_main_html())
