@@ -19,6 +19,7 @@ def get_header():
     body {padding: 1rem;}
     div.products {padding: 0.4rem 0 1rem 2rem;}
     h3 {color: #888; margin: 0;}
+    h3 * {font-family: sans-serif;}
     span.total_count {font-weight: normal;}
     span.counter {color: #aaa; font-size: 80%;}
     .highlighted {color: #3333ff;}
