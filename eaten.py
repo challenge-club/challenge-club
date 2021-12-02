@@ -12,17 +12,10 @@ def get_header():
 <meta charset="UTF-8">
 <title>Овощной клуб декабря</title>
 <style>
-table {
-    display: inline-block;
-    margin-right: 1rem;
-    border-collapse: collapse;
-    vertical-align: top;
+div.products {
+    padding: 0 0 1rem 2rem;
 }
-table td, table th {
-    border: 1px solid #ddd;
-    padding: 0.1rem 0.3rem;
-}
-th {
+h3 {
     color: #888;
 }
 span.total_count {
@@ -72,9 +65,12 @@ function go_dull() {
 def get_main_html():
     eaten = get_eat_data()
     html = get_header()
+    sorting = [(-len(eaten[person]), person) for person in eaten]
+    sorting.sort()
 
-    for person in eaten:
-        table = f'''<table onmouseover="show_missing('{person}')" onmouseout="go_dull()"><tr><th>{person} <span class="total_count">&middot; {len(eaten[person])}</span></th></tr>'''
+    for _, person in sorting:
+        section = f'''<div onmouseover="show_missing('{person}')" onmouseout="go_dull()"><h3>{person} <span class="total_count">&middot; {len(eaten[person])}</span></h3><div class="products">'''
+        products = []
         for i, product in enumerate(eaten[person]):
             css_class = ''
             for other_person in eaten:
@@ -83,9 +79,10 @@ def get_main_html():
                     css_class += f' missed_by_{other_person}'
                 else:
                     css_class += f' eaten_by_{other_person}'
-            table += f'<tr><td><span class="counter">{i + 1}</span> <span class="eaten {css_class}">{product}</span></td></tr>'
-        table += '</table>'
-        html += table
+            products.append(f'<nobr><span class="counter">{i + 1}</span> <span class="eaten {css_class}">{product}</span></nobr>')
+        section += ' <span class="sep">&middot;</span> '.join(products)
+        section += '</div></div>'
+        html += section
 
     return html
 
