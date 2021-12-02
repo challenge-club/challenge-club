@@ -15,7 +15,7 @@ def get_header():
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
 <style>
-    * {font-family: 'Open Sans Condensed', sans-serif;}
+    * {font-family: 'Open Sans Condensed', sans-serif; color: #444;}
     body {padding: 1rem;}
     div.products {padding: 0.4rem 0 1rem 2rem;}
     h3 {color: #888; margin: 0;}
@@ -26,6 +26,7 @@ def get_header():
     .eaten {color: #ddd;}
     .unique {color: orange;}
     div.all_products {margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem;}
+    sup {color: inherit;}
 </style>
 </head>
 <body>
@@ -196,7 +197,7 @@ def get_main_html():
     products = []
     for product in sorted(all_products):
         marks = ''.join(name[0] for name in sorted(eaten.keys()) if product in eaten[name])
-        products.append(f'<span class="{get_css_classes(product)}">{product}<sup>{marks}</sup>')
+        products.append(f'<span class="{get_css_classes(product)}">{product}<sup>{marks}</sup></span>')
     html += ' &middot; \n'.join(products)
 
     html += '</div></body>'
