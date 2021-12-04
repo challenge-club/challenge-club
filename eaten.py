@@ -86,6 +86,7 @@ def get_main_html():
     sorting.sort()
 
     for _, person in sorting:
+        print(f"{person}... ", end='', flush=True)
         if len(eaten[person]) != len(set(eaten[person])):
             raise Exception(f"Duplicates in product list of {person}!")
 
@@ -98,6 +99,7 @@ def get_main_html():
         section += ' <span class="sep">&middot;</span> '.join(products)
         section += '\n</div></div>\n\n'
         html += section
+        print('ok')
 
     html += '<div class="all_products">'
     all_products = set("""
@@ -175,11 +177,13 @@ def get_main_html():
         all_products.update(products)
     products = []
     for product in sorted(all_products):
+        print('.', end='', flush=True)
         marks = ''.join(name[0] for name in sorted(eaten.keys()) if product in eaten[name])
         products.append(f'<span class="{get_css_classes(product)}">{product}<sup>{marks}</sup></span>')
     html += ' &middot; \n'.join(products)
 
     html += '</div></body>'
+    print()
     return html
 
 
