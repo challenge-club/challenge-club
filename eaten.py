@@ -1,3 +1,5 @@
+import collections
+
 import strictyaml
 
 
@@ -88,7 +90,8 @@ def get_main_html():
     for _, person in sorting:
         print(f"{person}... ", end='', flush=True)
         if len(eaten[person]) != len(set(eaten[person])):
-            raise Exception(f"Duplicates in product list of {person}!")
+            counter = collections.Counter(eaten[person])
+            raise Exception(f"Duplicates in product list of {person}: {[x for x in set(eaten[person]) if counter[x] > 1]}")
 
         section = f'''<div><h3><span onmouseover="highlights('{person}')" onmouseout="go_dull()">{person} <span class="total_count">&middot; {len(eaten[person])}</span></span></h3><div class="products">\n'''
         products = []
@@ -104,11 +107,9 @@ def get_main_html():
     html += '<div class="all_products">'
     all_products = set("""
 апельсин красный
-арбуз
 базилик
 баклажан
 брусника
-брюква
 виноград жёлтый
 виноград красный
 виноград чёрный
@@ -117,13 +118,11 @@ def get_main_html():
 грейпфрут белый
 грейпфрут красный
 груша жёлтая
-груша зелёная
 гуайява
 дыня желтая
 дыня зелёная
 земляника
 имбирь
-инжир
 кабачок
 цуккини
 капуста кале
@@ -137,7 +136,6 @@ def get_main_html():
 лук жёлтый
 лук фиолетовый
 лук-порей
-манго
 мангольд
 морковь белая
 морковь фиолетовая
@@ -152,24 +150,18 @@ def get_main_html():
 пастернак
 патиссон
 помидор зелёный
-помидор красный
-помидор розовый
 редис белый
 редис красный
 ростки люцерны
 руккола
-салат листовой
-свити
 свёкла
 свёкла жёлтая
 слива синяя
 слива жёлтая
 смородина красная
 смородина чёрная
-спаржа
 тыква
 фенхель
-финик
 черешня
 """.strip().splitlines())
     for products in eaten.values():
