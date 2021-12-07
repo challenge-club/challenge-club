@@ -1,4 +1,5 @@
 import collections
+import time
 
 import strictyaml
 
@@ -68,21 +69,80 @@ function go_dull() {
 """
 
 
-def get_css_classes(product):
-    eaten = get_eat_data()
+def get_css_classes(product, eaten, eaten_set, unique_set):
     css_classes = []
     for person in eaten:
-        if product in eaten[person]:
+        if product in eaten_set[person]:
             css_classes.append(f'eaten_by_{person}')
-            if all(product not in eaten[p] for p in eaten if p != person):
-                css_classes.append(f'unique_by_{person}')
         else:
             css_classes.append(f'missed_by_{person}')
+        if product in unique_set[person]:
+            css_classes.append(f'unique_by_{person}')
     return ' '.join(css_classes)
 
 
+def union_sets(sets):
+    result = set()
+    for s in sets:
+        result.update(s)
+    return result
+
+
 def get_main_html():
+    start = time.monotonic()
+
     eaten = get_eat_data()
+    eaten_set = {p: set(e) for p, e in eaten.items()}
+
+    all_products = set("""
+апельсин красный
+базилик
+баклажан
+вишня
+водоросль ламинария
+грейпфрут белый
+гуайява
+дыня желтая
+дыня зелёная
+земляника
+имбирь
+кабачок
+цуккини
+капуста романеско
+капуста цветная фиолетовая
+кольраби
+лайм
+лук белый
+лук жёлтый
+лук фиолетовый
+лук-порей
+мангольд
+морковь белая
+морковь фиолетовая
+облепиха
+оливка зелёная
+оливка светло-розовая
+паприка зелёная
+пастернак
+патиссон
+помидор зелёный
+редис белый
+свёкла
+свёкла жёлтая
+слива синяя
+слива жёлтая
+смородина красная
+смородина чёрная
+тыква
+фенхель
+черешня
+""".strip().splitlines())
+    for products in eaten_set.values():
+        all_products.update(products)
+
+    eaten_by_others_set = {p: union_sets(eaten_set[x] for x in eaten if x != p) for p in eaten}
+    unique_set = {p: e - eaten_by_others_set[p] for p, e in eaten_set.items()}
+
     html = get_header()
     sorting = [(-len(eaten[person]), person) for person in eaten]
     sorting.sort()
@@ -97,7 +157,7 @@ def get_main_html():
         products = []
 
         for i, product in enumerate(eaten[person]):
-            products.append(f'\n<nobr><span class="counter">{i + 1}</span> <span class="{get_css_classes(product)}">{product}</span></nobr>')
+            products.append(f'\n<nobr><span class="counter">{i + 1}</span> <span class="{get_css_classes(product, eaten, eaten_set, unique_set)}">{product}</span></nobr>')
 
         section += ' <span class="sep">&middot;</span> '.join(products)
         section += '\n</div></div>\n\n'
@@ -105,75 +165,16 @@ def get_main_html():
         print('ok')
 
     html += '<div class="all_products">'
-    all_products = set("""
-апельсин красный
-базилик
-баклажан
-брусника
-виноград жёлтый
-виноград красный
-виноград чёрный
-вишня
-водоросль ламинария
-грейпфрут белый
-грейпфрут красный
-груша жёлтая
-гуайява
-дыня желтая
-дыня зелёная
-земляника
-имбирь
-кабачок
-цуккини
-капуста кале
-капуста романеско
-капуста цветная фиолетовая
-картофель фиолетовый
-клюква
-кокос
-кольраби
-лайм
-лук жёлтый
-лук фиолетовый
-лук-порей
-мангольд
-морковь белая
-морковь фиолетовая
-облепиха
-оливка зелёная
-оливка светло-розовая
-оливка чёрная
-паприка белая
-паприка зелёная
-паприка оранжевая
-пастернак
-патиссон
-помидор зелёный
-редис белый
-редис красный
-ростки люцерны
-руккола
-свёкла
-свёкла жёлтая
-слива синяя
-слива жёлтая
-смородина красная
-смородина чёрная
-тыква
-фенхель
-черешня
-""".strip().splitlines())
-    for products in eaten.values():
-        all_products.update(products)
+
     products = []
     for product in sorted(all_products):
         print('.', end='', flush=True)
         marks = ''.join(name[0] for name in sorted(eaten.keys()) if product in eaten[name])
-        products.append(f'<span class="{get_css_classes(product)}">{product}<sup>{marks}</sup></span>')
+        products.append(f'<span class="{get_css_classes(product, eaten, eaten_set, unique_set)}">{product}<sup>{marks}</sup></span>')
     html += ' &middot; \n'.join(products)
 
     html += '</div></body>'
-    print()
+    print(f"\nDone in {time.monotonic() - start:.1f} seconds")
     return html
 
 
