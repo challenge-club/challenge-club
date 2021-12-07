@@ -97,7 +97,6 @@ def get_main_html():
     all_products = set("""
 апельсин красный
 базилик
-баклажан
 вишня
 водоросль ламинария
 грейпфрут белый
@@ -107,12 +106,11 @@ def get_main_html():
 земляника
 имбирь
 кабачок
-цуккини
 капуста романеско
 капуста цветная фиолетовая
-кольраби
+кольраби зелёная
+кольраби фиолетовая
 лайм
-лук белый
 лук жёлтый
 лук фиолетовый
 лук-порей
@@ -122,7 +120,6 @@ def get_main_html():
 облепиха
 оливка зелёная
 оливка светло-розовая
-паприка зелёная
 пастернак
 патиссон
 помидор зелёный
@@ -168,13 +165,12 @@ def get_main_html():
 
     products = []
     for product in sorted(all_products):
-        print('.', end='', flush=True)
         marks = ''.join(name[0] for name in sorted(eaten.keys()) if product in eaten[name])
         products.append(f'<span class="{get_css_classes(product, eaten, eaten_set, unique_set)}">{product}<sup>{marks}</sup></span>')
     html += ' &middot; \n'.join(products)
 
     html += '</div></body>'
-    print(f"\nDone in {time.monotonic() - start:.1f} seconds")
+    print(f"▓ Done in {time.monotonic() - start:.1f} seconds")
     return html
 
 
