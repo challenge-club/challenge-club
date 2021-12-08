@@ -138,13 +138,14 @@ def get_main_html():
     sorting = [(-len(eaten[person]), person) for person in eaten]
     sorting.sort()
 
-    for _, person in sorting:
+    for _count, person in sorting:
+        count = -_count
         print(f"{person}... ", end='', flush=True)
-        if len(eaten[person]) != len(set(eaten[person])):
+        if count != len(eaten_set[person]):
             counter = collections.Counter(eaten[person])
-            raise Exception(f"Duplicates in product list of {person}: {[x for x in set(eaten[person]) if counter[x] > 1]}")
+            raise Exception(f"Duplicates in product list of {person}: {[x for x in eaten_set[person] if counter[x] > 1]}")
 
-        section = f'''<div><h3><span onmouseover="highlights('{person}')" onmouseout="go_dull()">{person} <span class="total_count">&middot; {len(eaten[person])}</span></span></h3><div class="products">\n'''
+        section = f'''<div><h3><span onmouseover="highlights('{person}')" onmouseout="go_dull()">{person} <span class="total_count">&middot; {count}</span></span></h3><div class="products">\n'''
         products = []
 
         for i, product in enumerate(eaten[person]):
@@ -159,7 +160,7 @@ def get_main_html():
 
     products = []
     for product in sorted(all_products):
-        marks = ''.join(name[0] for name in sorted(eaten.keys()) if product in eaten[name])
+        marks = ''.join(name[0] for name in sorted(eaten.keys()) if product in eaten_set[name])
         products.append(f'<span class="{get_css_classes(product, eaten, eaten_set, unique_set)}">{product}<sup>{marks}</sup></span>')
     html += ' &middot; \n'.join(products)
 
