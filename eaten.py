@@ -165,6 +165,8 @@ def get_main_html():
     html += ' &middot; \n'.join(products)
 
     html += '</div></body>'
+
+    print('unique:', {p: len(e) for p, e in unique_set.items()})
     print(f"▓ Done in {time.monotonic() - start:.1f} seconds")
     return html
 
