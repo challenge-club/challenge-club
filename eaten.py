@@ -116,7 +116,6 @@ def get_main_html():
 морковь фиолетовая
 оливка зелёная
 оливка светло-розовая
-пастернак
 патиссон
 помидор зелёный
 редис белый
@@ -127,7 +126,6 @@ def get_main_html():
 смородина красная
 смородина чёрная
 тыква
-фенхель
 """.strip().splitlines())
     for products in eaten_set.values():
         all_products.update(products)
@@ -165,7 +163,7 @@ def get_main_html():
         products.append(f'<span class="{get_css_classes(product, eaten, eaten_set, unique_set)}">{product}<sup>{marks}</sup></span>')
     html += ' &middot; \n'.join(products)
 
-    html += '</div></body>'
+    html += f'<br><br>все вместе: {len(union_sets(eaten_set.values()))}</div></body>'
 
     print('unique:', {p: len(e) for p, e in unique_set.items()})
     print(f"▓ Done in {time.monotonic() - start:.1f} seconds")
