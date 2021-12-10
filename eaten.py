@@ -160,7 +160,7 @@ def get_main_html():
     products = []
     for product in sorted(all_products):
         marks = ''.join(name[0] for name in sorted(eaten.keys()) if product in eaten_set[name])
-        products.append(f'<span class="{get_css_classes(product, eaten, eaten_set, unique_set)}">{product}<sup>{marks}</sup></span>')
+        products.append(f'<nobr><span class="{get_css_classes(product, eaten, eaten_set, unique_set)}">{product}<sup>{marks}</sup></span></nobr>')
     html += ' &middot; \n'.join(products)
 
     html += f'<br><br>все вместе: {len(union_sets(eaten_set.values()))}</div></body>'
