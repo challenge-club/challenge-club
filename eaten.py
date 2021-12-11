@@ -19,7 +19,7 @@ def get_header():
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
 <style>
     * {font-family: 'Open Sans Condensed', sans-serif; color: #444;}
-    body {padding: 1rem;}
+    body {padding: 1rem; font-size: 1rem;}
     div.products {padding: 0.4rem 0 1rem 2rem;}
     h3 {color: #888; margin: 0;}
     h3 * {font-family: sans-serif;}
@@ -105,6 +105,7 @@ def get_main_html():
 земляника
 капуста романеско
 капуста цветная фиолетовая
+крыжовник
 лук-порей
 оливка зелёная
 оливка светло-розовая
