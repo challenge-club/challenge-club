@@ -24,12 +24,12 @@ def get_header():
     h3 {color: #888; margin: 0;}
     h3 * {font-family: sans-serif;}
     span.total_count {font-weight: normal;}
-    span.counter {color: #aaa; font-size: 30%;}
+    span.counter {color: #aaa; font-size: 80%;}
     .missed {color: #3333ff;}
     .eaten {color: #ddd;}
     .unique {color: orange;}
     div.all_products {margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; line-height: 110%;}
-    sup {color: inherit; font-variant: small-caps; font-size: 80%;}
+    sup {color: inherit; font-variant: small-caps; font-size: 70%;}
 </style>
 </head>
 <body>
