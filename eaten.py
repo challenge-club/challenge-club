@@ -24,7 +24,7 @@ def get_header():
     h3 {color: #888; margin: 0;}
     h3 * {font-family: sans-serif;}
     span.total_count {font-weight: normal;}
-    span.counter {color: #aaa; font-size: 80%;}
+    span.counter {color: #aaa; font-size: 30%;}
     .missed {color: #3333ff;}
     .eaten {color: #ddd;}
     .unique {color: orange;}
