@@ -19,8 +19,8 @@ def get_header():
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
 <style>
     * {font-family: 'Open Sans Condensed', sans-serif; color: #444;}
-    body {padding: 1rem; font-size: 2vmin;}
-    div.products {padding: 0.4rem 0 1rem 2rem;}
+    body {padding: 1rem; font-size: 1.9vmin;}
+    div.products {padding: 0.4rem 0 1rem 2rem; line-height: 110%;}
     h3 {color: #888; margin: 0;}
     h3 * {font-family: sans-serif;}
     span.total_count {font-weight: normal;}
@@ -28,8 +28,8 @@ def get_header():
     .missed {color: #3333ff;}
     .eaten {color: #ddd;}
     .unique {color: orange;}
-    div.all_products {margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem;}
-    sup {color: inherit;}
+    div.all_products {margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; line-height: 110%;}
+    sup {color: inherit; font-variant: small-caps; font-size: 80%;}
 </style>
 </head>
 <body>
