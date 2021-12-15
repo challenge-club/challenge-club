@@ -104,8 +104,12 @@ def get_main_html():
 лук белый
 лук-порей
 патиссон
+сельдерей корень
 слива синяя
 слива жёлтая
+базилик
+тимьян
+мелисса
 """.strip().splitlines())
     for products in eaten_set.values():
         all_products.update(products)
