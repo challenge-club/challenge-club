@@ -110,6 +110,7 @@ def get_main_html():
 базилик
 тимьян
 мелисса
+майоран
 """.strip().splitlines())
     for products in eaten_set.values():
         all_products.update(products)
