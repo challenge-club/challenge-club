@@ -106,6 +106,9 @@ def get_main_html():
 тимьян
 мелисса
 майоран
+ростки бамбука
+черемша
+листья винограда
 """.strip().splitlines())
     for products in eaten_set.values():
         all_products.update(products)
