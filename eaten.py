@@ -104,11 +104,13 @@ def get_main_html():
 патиссон
 слива синяя
 слива жёлтая
-мелисса
 майоран
 ростки бамбука
 черемша
 листья винограда
+артишок
+перец чили жёлтый
+лемонграсс
 """.strip().splitlines())
     for products in eaten_set.values():
         all_products.update(products)
