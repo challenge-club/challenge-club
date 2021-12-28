@@ -111,6 +111,7 @@ def get_main_html():
 ростки бамбука
 слива жёлтая
 слива синяя
+стручки гороха
 черемша
 """.strip().splitlines())
     for products in eaten_set.values():
