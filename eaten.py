@@ -99,7 +99,6 @@ def get_main_html():
 апельсин красный
 арбуз жёлтый
 артишок
-банан красный
 бергамот
 боб красный
 боб белый
@@ -113,8 +112,6 @@ def get_main_html():
 ростки бамбука
 слива жёлтая
 слива синяя
-стручки гороха
-черемша
 """.strip().splitlines())
     for products in eaten_set.values():
         all_products.update(products)
