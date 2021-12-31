@@ -97,12 +97,10 @@ def get_main_html():
 
     all_products = set("""
 арбуз жёлтый
-артишок
 бергамот
 капуста романеско
 листья винограда
 персик
-ростки бамбука
 слива жёлтая
 """.strip().splitlines())
     for products in eaten_set.values():
