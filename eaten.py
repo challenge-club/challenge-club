@@ -99,8 +99,6 @@ def get_main_html():
 арбуз жёлтый
 бергамот
 капуста романеско
-листья винограда
-персик
 слива жёлтая
 """.strip().splitlines())
     for products in eaten_set.values():
