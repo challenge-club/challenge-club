@@ -107,7 +107,6 @@ def get_main_html():
 персик
 ростки бамбука
 слива жёлтая
-слива синяя
 """.strip().splitlines())
     for products in eaten_set.values():
         all_products.update(products)
