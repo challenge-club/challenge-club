@@ -37,7 +37,9 @@ def get_main_html():
     trainings = get_data()
     today = int(datetime.datetime.now().strftime('%d'))
 
-    html += '<tr><th style="border: 0"></th>' + ''.join(f'<th>{person} &middot; {len(trainings[person])}</th>' for person in trainings) + '</tr>\n\n'
+    counters = {person: len([line for line in lines.values() if line]) for person, lines in trainings.items()}
+
+    html += '<tr><th style="border: 0"></th>' + ''.join(f'<th>{person} &middot; {counters[person]}</th>' for person in trainings) + '</tr>\n\n'
 
     minutes = {person: get_minutes(lines) for person, lines in trainings.items()}
     max_minutes = max(max(x for x in m if x is not None) for m in minutes.values())
