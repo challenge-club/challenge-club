@@ -52,6 +52,7 @@ def get_main_html():
         html += f'<tr><td>{date}</td>'
         for person in trainings:
             training = trainings[person][date] if date in trainings[person] else ''
+            training = ' '.join(reversed(training.split(', ')))
             html += f'<td>{training}</td>'
         html += '</tr>\n\n'
 
