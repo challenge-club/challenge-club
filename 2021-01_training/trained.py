@@ -48,7 +48,8 @@ def get_main_html():
     sparklines = {person: make_sparkline(minutes[person]) for person in trainings}
     html += f'<tr><td style="border: 0"></td>' + ''.join(f'<td class="centered">{strut_bar}{sparklines[person]}</td>' for person in trainings) + '</tr>\n\n'
 
-    for date_num in range(1, min(31, today) + 1):
+    # for date_num in range(1, min(31, today) + 1):
+    for date_num in range(1, 31 + 1):
         date = f'{date_num:02d}'
         html += f'<tr><td>{date}</td>'
         for person in trainings:
