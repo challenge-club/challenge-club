@@ -38,11 +38,12 @@ def get_main_html():
     today = int(datetime.datetime.now().strftime('%d'))
 
     counters = {person: len([line for line in lines.values() if line]) for person, lines in trainings.items()}
-
-    html += '<tr><th style="border: 0"></th>' + ''.join(f'<th>{person} &middot; {counters[person]}</th>' for person in trainings) + '</tr>\n\n'
-
     minutes = {person: get_minutes(lines) for person, lines in trainings.items()}
+    minutes_total = {person: sum(x for x in m if x) for person, m in minutes.items()}
     max_minutes = max(max(x for x in m if x is not None) for m in minutes.values())
+
+    html += '<tr><th style="border: 0"></th>' + ''.join(f'<th>{person} &middot; {counters[person]} &middot; Σ={minutes_total[person]}</th>' for person in trainings) + '</tr>\n\n'
+
     strut_bar = f'<div class="bar" style="height: {max_minutes // BAR_SCALE}px; width: 0;"></div>'
     sparklines = {person: make_sparkline(minutes[person]) for person in trainings}
     html += f'<tr><td style="border: 0"></td>' + ''.join(f'<td class="centered">{strut_bar}{sparklines[person]}</td>' for person in trainings) + '</tr>\n\n'
